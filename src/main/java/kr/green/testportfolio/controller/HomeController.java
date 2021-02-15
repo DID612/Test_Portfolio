@@ -32,6 +32,6 @@ public class HomeController {
 
 	@RequestMapping(value = "/signup")
 	public String signUp(Model model) {
-		return "signup/signUp";
+		return "/signup/signUp";
 	}
 }
