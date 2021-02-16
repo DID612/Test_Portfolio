@@ -89,5 +89,9 @@ public class UserVo {
 				+ ", password=" + password + ", email=" + email + ", sex=" + sex + ", authSeller=" + authSeller
 				+ ", alarm=" + alarm + ", snsEmail=" + snsEmail + ", pNum=" + pNum + "]";
 	}
+	public UserVo() {
 
+	}
+
+	
 }

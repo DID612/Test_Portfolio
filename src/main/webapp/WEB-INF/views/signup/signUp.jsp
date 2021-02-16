@@ -12,7 +12,7 @@
 	<div class="container">
 	  <h1>회원가입 페이지</h1>
 	  <h5>정보를 정확히 입력해주세요 :</h5>
-	  <form action="/action_page.php">
+	  <form action="<%=request.getContextPath()%>/signup" method="post">
 	    <div class="form-group">
 	      <label for="usr">아이디:</label>
 	      <input type="text" class="form-control" id="usr" name="username">
