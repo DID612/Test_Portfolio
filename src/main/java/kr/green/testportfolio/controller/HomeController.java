@@ -41,8 +41,8 @@ public class HomeController {
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signUp(Model model, UserVo user) {
-		System.out.println(user);
-		//userservice.insertUser(user);
+//		System.out.println(user);
+		userservice.insertUser(user);
 		
 		return "/signup/signUp";
 	}

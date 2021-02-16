@@ -8,7 +8,7 @@ public interface UserDao {
 	
 	public String getEmail(@Param("id")String id);
 
-	public UserVo insertUser(@Param("user")UserVo user);
+	public void insertUser(@Param("user")UserVo user);
 
 	public UserVo getUser(String id);
 }
