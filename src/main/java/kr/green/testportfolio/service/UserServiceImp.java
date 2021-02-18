@@ -22,8 +22,7 @@ public class UserServiceImp implements UserService{
 	}
 
 	@Override
-	public UserVo getUser(String id) {
-		
+	public UserVo getUser(String id) {	
 		return userDao.getUser(id);
 	}
 }

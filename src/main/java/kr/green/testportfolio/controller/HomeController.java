@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.green.testportfolio.service.UserService;
 import kr.green.testportfolio.vo.UserVo;
@@ -45,5 +46,20 @@ public class HomeController {
 		userservice.insertUser(user);
 		
 		return "/signup/signUp";
+	}
+	
+	@RequestMapping(value = "/iCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String iCheckPost(String id) {
+		UserVo user = userservice.getUser(id);
+		if(user == null)
+			return "not user"; 
+		return "user";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String getLogin(Model model) {
+		
+		return "/login/Login";
 	}
 }

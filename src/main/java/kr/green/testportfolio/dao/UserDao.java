@@ -10,5 +10,5 @@ public interface UserDao {
 
 	public void insertUser(@Param("user")UserVo user);
 
-	public UserVo getUser(String id);
+	public UserVo getUser(@Param("id")String id);
 }
