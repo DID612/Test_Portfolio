@@ -5,6 +5,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.green.testportfolio.service.UserService;
@@ -30,7 +34,17 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model, Locale locale, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate);
+		UserVo user = (UserVo)session.getAttribute("login");
+//		UserVo user = (UserVo)req.getAttribute("login");
+		model.addAttribute("user", user);
 		return "/main/home";
 	}
 
@@ -61,5 +75,21 @@ public class HomeController {
 	public String getLogin(Model model) {
 		
 		return "/login/Login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String postLogin(Model model, HttpServletRequest req, @RequestParam("id")String id, @RequestParam("pw")String pw) {
+		logger.info("post login");
+		HttpSession session = req.getSession();
+		UserVo login = userservice.getUserPw(id, pw);
+
+		if(login == null) {
+			session.setAttribute("login", null);
+//			model.addAttribute("login", null);
+			return "redirect:/login";
+		}else {
+			session.setAttribute("login", login);
+			return "redirect:/";
+		}
 	}
 }

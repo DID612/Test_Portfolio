@@ -8,4 +8,6 @@ public interface UserService {
 	void insertUser(UserVo user);
 
 	UserVo getUser(String string);
+
+	UserVo getUserPw(String id, String pw);
 }

@@ -9,6 +9,11 @@
   <select id="getUser" resultType="kr.green.testportfolio.vo.UserVo">
     select * from user where id = #{id}
   </select>
+  
+  <select id="getUserPw" resultType="kr.green.testportfolio.vo.UserVo">
+    select * from user where id = #{id} and password = #{pw}
+  </select>
+  
   <insert id="insertUser" parameterType="kr.green.testportfolio.vo.UserVo">
     insert into user(age, id, name, password, email, sex, pNum)
     values (#{user.age},#{user.id},#{user.name},#{user.password},#{user.email},#{user.sex},#{user.pNum})

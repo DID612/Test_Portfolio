@@ -7,6 +7,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-d
+	<form action="${pageContext.request.contextPath}/login" method="post">
+		<div class="form-group">
+		  <label for="usr">아이디:</label>
+		  <input type="text" class="form-control" id="id" name="id">
+		</div>
+		<div class="form-group">
+		  <label for="pwd">비밀번호:</label>
+		  <input type="password" class="form-control" id="pw" name="pw">
+		</div>
+		<button name="lBtn">로그인</button>
+	</form>
+<script type="text/javascript">
+		$('#lBtn').click(function(){
+			var id = $('#id').val();
+			var pw = $('#pw').val();
+			
+			if(id != '' && pw != ''){
+				if(id == ${user.id} && pw == ${user.password})
+					return;
+			}else{
+				if(id == ''){
+					alert('아이디를 입력해주세요.')
+				}else if(pw == ''){
+					alert('비밀번호를 입력해주세요.')
+				}
+				
+			}
+		})
+	</script>
 </body>
 </html>
