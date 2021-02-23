@@ -1,5 +1,7 @@
 package kr.green.testportfolio.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,10 @@ public class UserServiceImp implements UserService{
 	@Override
 	public UserVo updateUser(String pw) {
 		return userDao.updateUser(pw);
+	}
+
+	@Override
+	public ArrayList<UserVo> getAllUser() {
+		return userDao.getAllUser();
 	}
 }

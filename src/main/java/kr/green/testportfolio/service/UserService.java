@@ -1,5 +1,7 @@
 package kr.green.testportfolio.service;
 
+import java.util.ArrayList;
+
 import kr.green.testportfolio.vo.UserVo;
 
 public interface UserService {
@@ -12,4 +14,6 @@ public interface UserService {
 	UserVo getUserPw(String id, String pw);
 
 	UserVo updateUser(String pw);
+
+	ArrayList<UserVo> getAllUser();
 }

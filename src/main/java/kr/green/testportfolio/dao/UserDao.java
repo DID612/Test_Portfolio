@@ -1,5 +1,7 @@
 package kr.green.testportfolio.dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Param;
 
 import kr.green.testportfolio.vo.UserVo;
@@ -15,4 +17,6 @@ public interface UserDao {
 	public UserVo getUserPw(@Param("id")String id, @Param("pw")String pw);
 
 	public UserVo updateUser(@Param("pw")String pw);
+
+	public ArrayList<UserVo> getAllUser();
 }

@@ -2,6 +2,7 @@ package kr.green.testportfolio.controller;
 
 import java.lang.ProcessBuilder.Redirect;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,16 +38,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, Locale locale, HttpServletRequest req) {
-		HttpSession session = req.getSession();
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
 		String formattedDate = dateFormat.format(date);
-		
 		model.addAttribute("serverTime", formattedDate);
-		UserVo user = (UserVo)session.getAttribute("user");
-//		UserVo user = (UserVo)req.getAttribute("login");
-		model.addAttribute("user", user);
 		return "/main/home";
 	}
 
@@ -81,15 +77,11 @@ public class HomeController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String postLogin(Model model, HttpServletRequest req, @RequestParam("id")String id, @RequestParam("pw")String pw) {
 		logger.info("post login");
-		HttpSession session = req.getSession();
 		UserVo login = userservice.getUserPw(id, pw);
-
+		model.addAttribute("user", login);
 		if(login == null) {
-			session.setAttribute("user", null);
-//			model.addAttribute("login", null);
 			return "redirect:/login";
 		}else {
-			session.setAttribute("user", login);
 			return "redirect:/";
 		}
 	}
@@ -106,9 +98,10 @@ public class HomeController {
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyUserGet(Model model, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		UserVo user = (UserVo)session.getAttribute("user");
-		model.addAttribute("user", user);
+//		UserVo user = (UserVo)req.getAttribute("user");
+//		model.addAttribute("user", user);
+		ArrayList<UserVo> modifyUser = userservice.getAllUser();
+		model.addAttribute("list", modifyUser);
 		return "/main/modifyUser";
 	}
 	
@@ -136,8 +129,13 @@ public class HomeController {
 		//
 		HttpSession session = req.getSession();
 		UserVo mypage = userservice.updateUser(pw);
-
-		
 		return "/main/home";
+	}
+	
+	@RequestMapping(value = "/ajaxModify", method = RequestMethod.GET)
+	public String ajaxModifyGet(Model model, HttpServletRequest req) {
+		ArrayList<UserVo> modifyUser = userservice.getAllUser();
+		model.addAttribute("list", modifyUser);
+		return "/main/modifyUser";
 	}
 }
