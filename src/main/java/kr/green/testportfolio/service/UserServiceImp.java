@@ -30,4 +30,9 @@ public class UserServiceImp implements UserService{
 	public UserVo getUserPw(String id, String pw) {
 		return userDao.getUserPw(id,pw);
 	}
+
+	@Override
+	public UserVo updateUser(String pw) {
+		return userDao.updateUser(pw);
+	}
 }

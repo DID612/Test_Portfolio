@@ -10,4 +10,6 @@ public interface UserService {
 	UserVo getUser(String string);
 
 	UserVo getUserPw(String id, String pw);
+
+	UserVo updateUser(String pw);
 }

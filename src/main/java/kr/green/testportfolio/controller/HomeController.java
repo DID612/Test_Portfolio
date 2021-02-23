@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.testportfolio.service.UserService;
 import kr.green.testportfolio.vo.UserVo;
@@ -42,7 +43,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate);
-		UserVo user = (UserVo)session.getAttribute("login");
+		UserVo user = (UserVo)session.getAttribute("user");
 //		UserVo user = (UserVo)req.getAttribute("login");
 		model.addAttribute("user", user);
 		return "/main/home";
@@ -84,12 +85,59 @@ public class HomeController {
 		UserVo login = userservice.getUserPw(id, pw);
 
 		if(login == null) {
-			session.setAttribute("login", null);
+			session.setAttribute("user", null);
 //			model.addAttribute("login", null);
 			return "redirect:/login";
 		}else {
-			session.setAttribute("login", login);
+			session.setAttribute("user", login);
 			return "redirect:/";
 		}
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logoutGet(Model model, HttpServletRequest req) {
+		
+		req.getSession().removeAttribute("user");
+		//getHeader에 header가 뭘까? <= 전 경로가 null 이니 주소값이 null 된것
+		String referer = req.getHeader("Referer");
+		System.out.println(referer);
+		return "redirect:"+referer;
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modifyUserGet(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVo user = (UserVo)session.getAttribute("user");
+		model.addAttribute("user", user);
+		return "/main/modifyUser";
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String myPageGet(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVo user = (UserVo)session.getAttribute("user");
+
+		if(user == null) {
+			return "/main/home";
+		}else {
+			System.out.println("작동");
+			model.addAttribute("user", user);	
+			return "/main/myPage";
+		}
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
+	public String myPagePost(Model model, HttpServletRequest req, String pw) {
+		//session에 대해 고민해보자. 이 경우 session getAttribute를 써야 정상 작동할까? 
+		//아니면 단순히 유저서비스를 불러오는 것만으로 세션에 등록이 될까
+//		HttpSession session = req.getSession();
+//		UserVo user = (UserVo)session.getAttribute("login");
+//		model.addAttribute("user", user);
+		//
+		HttpSession session = req.getSession();
+		UserVo mypage = userservice.updateUser(pw);
+
+		
+		return "/main/home";
 	}
 }
