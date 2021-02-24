@@ -132,8 +132,9 @@ public class HomeController {
 		return "/main/home";
 	}
 	
-	@RequestMapping(value = "/ajaxModify", method = RequestMethod.GET)
+	@RequestMapping(value = "/ajaxModify", method = RequestMethod.POST)
 	public String ajaxModifyGet(Model model, HttpServletRequest req) {
+		System.out.println("작동함?");
 		ArrayList<UserVo> modifyUser = userservice.getAllUser();
 		model.addAttribute("list", modifyUser);
 		return "/main/modifyUser";

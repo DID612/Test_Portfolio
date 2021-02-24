@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>head</h1>
+	<a href="${pageContext.request.contextPath}"><h1>홈페이지</h1></a>
 </body>
 </html>

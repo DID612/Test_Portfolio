@@ -26,7 +26,7 @@
 				<td>${user.email}</td>
 				<td>${user.age}</td>
 			<td>
-				<select class="author">
+				<select class="authPower">
 					<c:forEach begin="1" end="10" var="i">
 						<option <c:if test="${i == user.authPower}">selected</c:if>>${i}</option>
 					</c:forEach>
@@ -42,10 +42,10 @@
 <script type="text/javascript">
 	$('.modify-btn').click(function(){
 		var id = $(this).parents('.user-row').find('.id').text();
-		var auPower = $(this).parents('.user-row').find('.author').val();
+		var authPower = $(this).parents('.user-row').find('.authPower').val();
     	var sendData = {'id' : id, 'authPower' : authPower};
 			$.ajax({
-					url : '${pageContext.request.contextPath}/ajaxModify',
+					url : "<%=request.getContextPath()%>/ajaxModify" ,
 					type : 'post',
 					data : JSON.stringify(sendData),
 					dataType:"json",
