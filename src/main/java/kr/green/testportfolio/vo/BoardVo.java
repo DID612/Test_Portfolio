@@ -7,15 +7,21 @@ import java.util.Date;
  *
  */
 public class BoardVo {
-	private int num, views;
-	private String content, writer, isDel;
+	private int bNum, views;
+	private String content, writer, isDel, title;
 	private Date registerDate;
 	
-	public int getNum() {
-		return num;
+	public String getTitle() {
+		return title;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getbNum() {
+		return bNum;
+	}
+	public void setbNum(int bNum) {
+		this.bNum = bNum;
 	}
 	public int getViews() {
 		return views;
@@ -51,21 +57,10 @@ public class BoardVo {
 	public BoardVo() {
 	}
 	
-	public BoardVo(int num, int views, String content, String writer, String isDel, Date registerDate) {
-		super();
-		this.num = num;
-		this.views = views;
-		this.content = content;
-		this.writer = writer;
-		this.isDel = isDel;
-		this.registerDate = registerDate;
-	}
-	
 	@Override
 	public String toString() {
-		return "BoardVo [num=" + num + ", views=" + views + ", content=" + content + ", writer=" + writer + ", isDel="
-				+ isDel + ", registerDate=" + registerDate + "]";
+		return "BoardVo [bNum=" + bNum + ", views=" + views + ", content=" + content + ", writer=" + writer + ", isDel="
+				+ isDel + ", title=" + title + ", registerDate=" + registerDate + "]";
 	}
-	
-	
+
 }

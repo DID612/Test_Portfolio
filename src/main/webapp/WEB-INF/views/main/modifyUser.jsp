@@ -38,12 +38,12 @@
 		</tr>
 	</c:forEach>
 </table>
-
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js">
 	$('.modify-btn').click(function(){
 		var id = $(this).parents('.user-row').find('.id').text();
 		var authPower = $(this).parents('.user-row').find('.authPower').val();
     	var sendData = {'id' : id, 'authPower' : authPower};
+    	
 			$.ajax({
 					url : "<%=request.getContextPath()%>/ajaxModify" ,
 					type : 'post',
