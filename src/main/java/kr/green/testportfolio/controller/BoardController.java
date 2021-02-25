@@ -67,8 +67,9 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	
-	@RequestMapping(value = "/authPop", method = RequestMethod.GET)
-	public String getDetail(Model model) {
-		return "/interceptor/authPop";
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String postDelete(Model model, HttpServletRequest req, int bNum) {
+		boardservice.deleteBoard(bNum);
+		return "board/list";
 	}
 }

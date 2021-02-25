@@ -23,4 +23,10 @@
   	insert into board (title, content, writer)
   		values (#{board.title}, #{board.content}, #{board.writer})
   </insert>
+  
+  <update id="deleteBoard">
+  	update board
+  		set isDel = #{isDel}
+  		where bNum = #{bNum}
+  </update>
 </mapper>
