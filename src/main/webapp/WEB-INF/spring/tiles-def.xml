@@ -24,6 +24,10 @@
     <definition name="/login/*" extends=".login">
       <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" />
     </definition>
+    
+	<definition name="/interceptor/*">
+      <put-attribute name="body" value="/WEB-INF/views/interceptor/{1}.jsp" />
+    </definition>
  
     <!-- (2) -->
    <definition name="/*/*" extends=".root">      

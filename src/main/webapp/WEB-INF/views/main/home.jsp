@@ -13,10 +13,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-	<h2>
-		${login.id}님 환영합니다.
-		${user.id}님 환영합니다.
-	</h2>
+
 <c:if test="${user != null}">
 	<h2>
 		${user.id}님 환영합니다.

@@ -31,6 +31,10 @@
 	   <li class="nav-item">
 	     <a class="nav-link" href="${pageContext.request.contextPath}/modify">권한부여</a>
 	   </li>
+	   
+	   <li class="nav-item">
+	     <a class="nav-link" href="${pageContext.request.contextPath}/list">게시판</a>
+	   </li>
 	</ul>
 </nav>
 </body>

@@ -37,10 +37,16 @@
 	</beans:bean>
 	
 	<beans:bean id="loginInterceptor" class="kr.green.testportfolio.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="authInterceptor" class="kr.green.testportfolio.interceptor.AuthInterceptor"></beans:bean>
 		<interceptors>
 			<interceptor>
 				<mapping path="/login"/>
 				<beans:ref bean="loginInterceptor"/>
 			</interceptor>
+			<interceptor>
+		        <mapping path="/register"/>
+		        <mapping path="/updateDetail"/>
+		        <beans:ref bean="authInterceptor"/>
+		    </interceptor>
 		</interceptors>
 </beans:beans>

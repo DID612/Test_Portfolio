@@ -128,6 +128,7 @@ public class HomeController {
 //		model.addAttribute("user", user);
 		//
 		HttpSession session = req.getSession();
+		req.getSession();
 		UserVo mypage = userservice.updateUser(pw);
 		return "/main/home";
 	}

@@ -8,4 +8,19 @@
     select * from board
   </select>
 
+  <select id="getDetail" resultType="kr.green.testportfolio.vo.BoardVo">
+    select * from board where bNum = #{bNum}
+  </select>
+  
+  <update id="updateDetail" parameterType="kr.green.testportfolio.vo.BoardVo">
+  	update board 
+  		set title = #{board.title},
+  			content = #{board.content}
+  		where bNum = #{board.bNum}
+  </update>
+  
+  <insert id="insertBoard" parameterType="kr.green.testportfolio.vo.BoardVo">
+  	insert into board (title, content, writer)
+  		values (#{board.title}, #{board.content}, #{board.writer})
+  </insert>
 </mapper>
