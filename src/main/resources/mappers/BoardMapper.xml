@@ -5,7 +5,13 @@
 <mapper namespace="kr.green.testportfolio.dao.BoardDao">
 
   <select id="getBoard" resultType="kr.green.testportfolio.vo.BoardVo">
-    select * from board
+    select * from board where isDel = 'N'
+    	order by bNum desc
+    	limit #{pageStart}, #{perPageNum}
+  </select>
+  
+  <select id="getTotalCount" resultType="int">
+    select count(*) from board where isDel = 'N'
   </select>
 
   <select id="getDetail" resultType="kr.green.testportfolio.vo.BoardVo">
@@ -26,7 +32,8 @@
   
   <update id="deleteBoard">
   	update board
-  		set isDel = #{isDel}
+  		set isDel = 'Y'
   		where bNum = #{bNum}
   </update>
+  
 </mapper>

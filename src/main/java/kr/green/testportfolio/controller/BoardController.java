@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.green.testportfolio.pagination.Criteria;
+import kr.green.testportfolio.pagination.PageMaker;
 import kr.green.testportfolio.service.BoardService;
 import kr.green.testportfolio.vo.BoardVo;
 import kr.green.testportfolio.vo.UserVo;
@@ -23,8 +25,12 @@ public class BoardController {
 	BoardService boardservice;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getBoard(Model model) {
-		ArrayList<BoardVo> list = boardservice.getBoard();
+	public String getBoard(Model model, Criteria cri) {
+		ArrayList<BoardVo> list = boardservice.getBoard(cri);
+		int totalCount = boardservice.getTotalCount(cri);
+		System.out.println(totalCount);
+		PageMaker pm = new PageMaker(totalCount, 2, cri);
+		model.addAttribute("pm", pm);
 		model.addAttribute("list", list);
 		return "/board/list";
 	}
@@ -67,9 +73,10 @@ public class BoardController {
 		return "redirect:/list";
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String postDelete(Model model, HttpServletRequest req, int bNum) {
 		boardservice.deleteBoard(bNum);
-		return "board/list";
+//		return "board/list";
+		return "redirect:/list";
 	}
 }

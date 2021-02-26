@@ -26,7 +26,7 @@
   	<a href="${pageContext.request.contextPath}/updateDetail?bNum=${board.bNum}">
       <button type="button" class="btn btn-primary">수정</button>  	
   	</a>
-  	<a href="${pageContext.request.contextPath}/delete">
+  	<a href="${pageContext.request.contextPath}/delete?bNum=${board.bNum}">
       <button type="button" class="btn btn-primary">삭제</button>  	
   	</a>
 
