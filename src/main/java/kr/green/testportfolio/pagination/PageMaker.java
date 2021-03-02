@@ -80,6 +80,7 @@ public class PageMaker {
 	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
 	}
+	
 	@Override
 	public String toString() {
 		return "PageMaker [totalCount=" + totalCount + ", startPage=" + startPage + ", endPage=" + endPage + ", prev="

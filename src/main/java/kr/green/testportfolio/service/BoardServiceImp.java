@@ -16,11 +16,6 @@ public class BoardServiceImp implements BoardService {
 	BoardDao boardDao;
 
 	@Override
-	public ArrayList<BoardVo> getBoard() {
-		return boardDao.getBoard();
-	}
-
-	@Override
 	public BoardVo getDetail(int bNum) {
 		return boardDao.getDetail(bNum);
 	}

@@ -1,27 +1,26 @@
 package kr.green.testportfolio.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.testportfolio.service.UserService;
 import kr.green.testportfolio.vo.UserVo;
@@ -33,6 +32,12 @@ import kr.green.testportfolio.vo.UserVo;
 public class HomeController {
 	@Autowired
 		UserService userservice;
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -54,6 +59,9 @@ public class HomeController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signUp(Model model, UserVo user) {
 //		System.out.println(user);
+		String pw = user.getPassword();
+		String encPw = passwordEncoder.encode("1234");
+		user.setPassword(encPw);
 		userservice.insertUser(user);
 		
 		return "/signup/signUp";
@@ -79,10 +87,10 @@ public class HomeController {
 		logger.info("post login");
 		UserVo login = userservice.getUserPw(id, pw);
 		model.addAttribute("user", login);
-		if(login == null) {
-			return "redirect:/login";
-		}else {
+		if(login != null && passwordEncoder.matches(pw, login.getPassword())) {
 			return "redirect:/";
+		}else {
+			return "redirect:/login";
 		}
 	}
 	
@@ -140,4 +148,46 @@ public class HomeController {
 		model.addAttribute("list", modifyUser);
 		return "/main/modifyUser";
 	}
+	
+	@RequestMapping(value = "/find/pw", method = RequestMethod.GET)
+	public String getFindPw(Model model) {
+
+		return "/login/findPw";
+	}
+	
+	@RequestMapping(value = "/find/pw", method = RequestMethod.POST)
+	public String postFindPw(Model model, String id, String email) {
+		UserVo user = userservice.getUser(id);
+		System.out.println(user);
+		System.out.println(email);
+		if(email.equals(user.getEmail())) {
+			//새 비밀번호 메일로 전송
+			System.out.println(user);
+			System.out.println(email);
+			System.out.println("구별");
+			String setfrom = "q23dp2@gmail.com";         
+		    String tomail  = user.getEmail();     // 받는 사람 이메일
+		    String title   = id + "님 비밀번호 찾기";      // 제목
+		    String content = "새 비밀번호 : 암호암호암호 ";    // 내용
+		    
+		    try {
+		        MimeMessage message = mailSender.createMimeMessage();
+		        MimeMessageHelper messageHelper 
+		            = new MimeMessageHelper(message, true, "UTF-8");
+
+		        messageHelper.setFrom(setfrom);  // 보내는사람 생략하거나 하면 정상작동을 안함
+		        messageHelper.setTo(tomail);     // 받는사람 이메일
+		        messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+		        messageHelper.setText(content);  // 메일 내용
+
+		        mailSender.send(message);
+		    } catch(Exception e){
+		        System.out.println(e);
+
+		    }
+			System.out.println("확인");
+		}
+		return "/login/findPw";
+	}
+	
 }

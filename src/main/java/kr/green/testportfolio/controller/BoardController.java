@@ -28,7 +28,6 @@ public class BoardController {
 	public String getBoard(Model model, Criteria cri) {
 		ArrayList<BoardVo> list = boardservice.getBoard(cri);
 		int totalCount = boardservice.getTotalCount(cri);
-		System.out.println(totalCount);
 		PageMaker pm = new PageMaker(totalCount, 2, cri);
 		model.addAttribute("pm", pm);
 		model.addAttribute("list", list);
@@ -79,4 +78,5 @@ public class BoardController {
 //		return "board/list";
 		return "redirect:/list";
 	}
+	
 }

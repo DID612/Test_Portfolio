@@ -17,7 +17,20 @@
 		  <input type="password" class="form-control" id="pw" name="pw">
 		</div>
 		<button name="lBtn">로그인</button>
+		<div class="userService">
+			<a name ="findPw"href="${pageContext.request.contextPath}/find/pw">
+				<span>비밀번호 찾기</span>
+			</a>
+			
+			&nbsp;
+			
+			<a href="${pageContext.request.contextPath}/signup">
+				<span>회원가입</span>
+			</a>
+		</div>
+
 	</form>
+	
 <script type="text/javascript">
 		$('#lBtn').click(function(){
 			var id = $('#id').val();

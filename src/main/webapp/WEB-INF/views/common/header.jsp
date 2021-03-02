@@ -33,6 +33,10 @@
 	   </li>
 	   
 	   <li class="nav-item">
+	     <a class="nav-link" href="${pageContext.request.contextPath}/signup">회원가입</a>
+	   </li>
+	   
+	   <li class="nav-item">
 	     <a class="nav-link" href="${pageContext.request.contextPath}/list">게시판</a>
 	   </li>
 	</ul>

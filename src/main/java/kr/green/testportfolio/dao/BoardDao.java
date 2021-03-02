@@ -10,8 +10,6 @@ import kr.green.testportfolio.vo.BoardVo;
 
 public interface BoardDao {
 
-	ArrayList<BoardVo> getBoard();
-
 	BoardVo getDetail(@Param("bNum")int bNum);
 
 	void updateDetail(@Param("board")BoardVo board);
@@ -20,9 +18,9 @@ public interface BoardDao {
 
 	void deleteBoard(@Param("bNum")int bNum);
 
-	ArrayList<BoardVo> getBoard(Criteria cri);
+	ArrayList<BoardVo> getBoard(@Param("cri")Criteria cri);
 
-	int getTotalCount(Criteria cri);
+	int getTotalCount(@Param("cri")Criteria cri);
 
 }
 		
