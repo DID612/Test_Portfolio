@@ -14,9 +14,10 @@ public interface UserDao {
 
 	public UserVo getUser(@Param("id")String id);
 
-	public UserVo getUserPw(@Param("id")String id, @Param("pw")String pw);
+	public UserVo getUserById(@Param("id")String id);
 
 	public UserVo updateUser(@Param("pw")String pw);
 
 	public ArrayList<UserVo> getAllUser();
+
 }

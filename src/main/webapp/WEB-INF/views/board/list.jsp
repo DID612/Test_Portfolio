@@ -40,7 +40,7 @@
     <div class="container">
         <div class="input-group">
             <form class="form-inline">
-                <select class="form-control" id="type" name="type" style="width:60px;display:inline-block;" >
+                <select class="form-control" id="type" name="type" >
                    <option value="1" <c:out value="${pm.criteria.type==1?'selected':'' }"/>>선택
                     </option>
                    <option value="2" <c:out value="${pm.criteria.type==2?'selected':'' }"/>>제목
@@ -50,7 +50,7 @@
 				   <option value="4" <c:out value="${pm.criteria.type==4?'selected':'' }"/>>내용
         			</option>
   				</select>
-				<input class="form-control mr-sm-2" type="text" placeholder="Search" style="width:200px;display:inline-block;"
+				<input class="form-control mr-sm-2" type="text" placeholder="Search"
                        name="search" value="${pm.criteria.search}">
 				<button class="btn btn-success" type="submit">검색</button>
 			</form>

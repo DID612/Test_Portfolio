@@ -7,39 +7,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" >
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" >	
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light">
-	<ul class="navbar-nav">
-	   <c:if test="${user.id == null}">
-		   <li class="nav-item">
-		     <a class="nav-link" href="${pageContext.request.contextPath}/login">로그인</a>
-		   </li>
-	   </c:if>		   
-		   
-	   <c:if test="${user.id != null}">
-		   <li class="nav-item">
-		     <a class="nav-link" href="${pageContext.request.contextPath}/logout">로그아웃</a>
-		   </li>
-	   </c:if>
-	   
-	   <li class="nav-item">
-	     <a class="nav-link" href="${pageContext.request.contextPath}/mypage">마이페이지</a>
-	   </li>
-	   
-	   <li class="nav-item">
-	     <a class="nav-link" href="${pageContext.request.contextPath}/modify">권한부여</a>
-	   </li>
-	   
-	   <li class="nav-item">
-	     <a class="nav-link" href="${pageContext.request.contextPath}/signup">회원가입</a>
-	   </li>
-	   
-	   <li class="nav-item">
-	     <a class="nav-link" href="${pageContext.request.contextPath}/list">게시판</a>
-	   </li>
-	</ul>
-</nav>
+	<div class="homepage">
+		<a href="${pageContext.request.contextPath}"><h1>홈페이지</h1></a>
+	</div>
+
+	
+	<nav class="navbar navbar-expand-sm searcher-box">
+	 	<div class="container">
+	        <div class="input-group">
+	            <form class="form-inline">
+	                <select class="form-control" id="type" name="type" >
+	                   <option value="1" <c:out value="${pm.criteria.type==1?'selected':'' }"/>>선택
+	                    </option>
+	                   <option value="2" <c:out value="${pm.criteria.type==2?'selected':'' }"/>>제목
+	                	</option>
+					   <option value="3" <c:out value="${pm.criteria.type==3?'selected':'' }"/>>저자
+	            		</option>
+					   <option value="4" <c:out value="${pm.criteria.type==4?'selected':'' }"/>>내용
+	        			</option>
+	  				</select>
+					<input class="form-control mr-sm-2" type="text" placeholder="Search"
+	                       name="search" value="${pm.criteria.search}">
+					<button class="btn btn-success" type="submit">검색</button>
+				</form>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>

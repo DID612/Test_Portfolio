@@ -18,7 +18,7 @@
     		and content like concat('%',#{cri.search}, '%')
     	</if>
     	<if test="cri.type == 4">
-    		and writer like concat('%',#{cri.search}, '%')
+    		and writer like concat('%',#{cri.search}, '%')	
     	</if>	
     	order by bNum desc
     	limit #{cri.pageStart}, #{cri.perPageNum}

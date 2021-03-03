@@ -11,9 +11,9 @@ public interface UserService {
 
 	UserVo getUser(String string);
 
-	UserVo getUserPw(String id, String pw);
+	UserVo getUserById(String id);
 
 	UserVo updateUser(String pw);
 
-	ArrayList<UserVo> getAllUser();
+	ArrayList<UserVo> getAllUser();;
 }

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+a{
+	text-decoration:none;
+}
+
+.homepage{
+	position:relative;
+	display:inline-block;
+	left:55px;
+	top:35px;
+}
+
+h1{
+	display:inline-block;
+}
+
+.searcher-box{
+	position:relative;
+	display:inline-block;
+	left:55px;
+	top:30px;
+}
+
+#search{
+	width:200px;
+	outline-style:none;
+	width:200px;
+	display:inline-block;
+}
+
+#type{
+	 width:60px;
+	 outline-style:none;
+	 width:60px;
+	 display:inline-block;
+}

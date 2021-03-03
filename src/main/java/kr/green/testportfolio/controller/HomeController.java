@@ -60,7 +60,7 @@ public class HomeController {
 	public String signUp(Model model, UserVo user) {
 //		System.out.println(user);
 		String pw = user.getPassword();
-		String encPw = passwordEncoder.encode("1234");
+		String encPw = passwordEncoder.encode(pw);
 		user.setPassword(encPw);
 		userservice.insertUser(user);
 		
@@ -83,11 +83,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String postLogin(Model model, HttpServletRequest req, @RequestParam("id")String id, @RequestParam("pw")String pw) {
+	public String postLogin(Model model, HttpServletRequest req, @RequestParam("id")String id,@RequestParam("pw")String pw) {
 		logger.info("post login");
-		UserVo login = userservice.getUserPw(id, pw);
-		model.addAttribute("user", login);
-		if(login != null && passwordEncoder.matches(pw, login.getPassword())) {
+		UserVo user = userservice.getUserById(id);
+		if(user != null && passwordEncoder.matches(pw, user.getPassword())) {
+			model.addAttribute("user", user);
 			return "redirect:/";
 		}else {
 			return "redirect:/login";
@@ -168,7 +168,7 @@ public class HomeController {
 			String setfrom = "q23dp2@gmail.com";         
 		    String tomail  = user.getEmail();     // 받는 사람 이메일
 		    String title   = id + "님 비밀번호 찾기";      // 제목
-		    String content = "새 비밀번호 : 암호암호암호 ";    // 내용
+		    String content = "새 비밀번호 : ";    // 내용
 		    
 		    try {
 		        MimeMessage message = mailSender.createMimeMessage();
