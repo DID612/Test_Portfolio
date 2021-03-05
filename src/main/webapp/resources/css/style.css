@@ -9,6 +9,7 @@ a{
 	margin:none;
 	padding:none;
 }
+
 .after::after{
 	clear:both;
 	display:block;
@@ -26,7 +27,9 @@ li{
 /* header.jsp css 적용 */
 
 .content-box{
-	margin-top:50px;
+	width:700px;
+	margin-top:150px;
+	margin:0 auto;
 }
 .homepage{
 	float:left;
@@ -35,15 +38,7 @@ li{
 .container.baselayout{
 	position:relative;
 	min-height: calc(100vh - 56px - 32px - 9 3px - 50px);
-}
-
-body{
-	position:relative;
-}
-
-tiles[name=header]{
-	margin-bottom: 150px;
-}
+}	
 
 h1{
 	display:inline-block;
@@ -92,6 +87,7 @@ h1{
 /* home.jsp css 적용 */
 
 .navigation-box{
+	margin:0 auto;
 	margin-top:50px;
 }
 .navigation-box .category{
@@ -137,3 +133,46 @@ h1{
 	margin-auto:0;
 }
 
+.today-banner-wrap{
+	width:975.99px;
+	white-space:nowrap;
+	/* overflow:hidden; */
+}
+
+.today-banner-wrap .today-banner-container{
+	width:975.99px;
+	height:400px;
+	white-space:nowrap;
+	overflow:hidden;
+}
+
+.today-banner-wrap .today-banner-container .rolling-box{
+	width:calc(1207.99px*5);
+	height: auto;
+	margin-left: -32px;
+	white-space:nowrap;
+}
+
+.today-banner-wrap .today-banner-container .rolling-box .rolling-banner{
+	display: block;
+	float:left;
+	white-space:nowrap;
+	
+}
+
+.today-banner-wrap .prev{
+	position:absolute;
+	top:250px;
+	left:20px;
+}
+
+.today-banner-wrap .next{
+	position:absolute;
+	top:250px;
+	right:340px;
+}
+
+
+.today-banner-wrap .today-banner-container .rolling-box .rolling-banner img{
+	
+}

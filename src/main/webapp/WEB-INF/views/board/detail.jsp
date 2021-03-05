@@ -18,11 +18,14 @@
       <label for="pwd">작성자:</label>
       <input type="text" class="form-control" id="writer" name="writer" value="${board.writer}" readonly>
     </div>
-  	<div class="form-group">
-	  <label for="comment">내용:</label>
-	  <textarea class="form-control" rows="5" id="content" name="content" readonly>${board.content}</textarea>
+	<div class="form-group">
+	      <label for="content">내용</label>
+	      <div>${board.content}</div>
 	</div>
   </form>
+  	<a href="<%=request.getContextPath()%>/list?page=${cri.page}&search=${cri.search}&type=${cri.type}">
+	  <button type="button" class="btn btn-outline-info">목록</button>
+	</a>
   	<a href="${pageContext.request.contextPath}/updateDetail?bNum=${board.bNum}">
       <button type="button" class="btn btn-primary">수정</button>  	
   	</a>

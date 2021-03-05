@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 	<title>Home</title>
+	<script src="https://kit.fontawesome.com/b1e3c8f87d.js" crossorigin="anonymous"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/rolling.js"></script>	
 </head>
 <body>
 
@@ -30,23 +33,29 @@
 	</div>
 </div>
 <div class="today-banner-wrap">
+	<a class="prev">
+		<i class="fas fa-chevron-circle-left fa-3x"></i>
+	</a>
+	<a class="next">
+		<i class="fas fa-chevron-circle-right fa-3x"></i>
+	</a>
 	<div class="today-banner-container">
-		<ul>
-			<li>
-				<img alt="" src="../image/banner1.png">
+		<ul class="rolling-box">		
+			<li class="rolling-banner">
+				<img alt="" src="${pageContext.request.contextPath}/resources/image/banner1.jfif">
 			</li>
-			<li>
-				<img alt="" src="../image/banner2.png">
+			<li class="rolling-banner">
+				<img alt="" src="${pageContext.request.contextPath}/resources/image/banner2.jfif">
 			</li>
-			<li>
-				<img alt="" src="../image/banner3.png">
+			<li class="rolling-banner">
+				<img alt="" src="${pageContext.request.contextPath}/resources/image/banner3.jfif">
 			</li>
-			<li>
-				<img alt="" src="../image/banner4.png">
+			<li class="rolling-banner">
+				<img alt="" src="${pageContext.request.contextPath}/resources/image/banner4.jfif">
 			</li>
-			<li>
-				<img alt="" src="../image/banner5.png">
-			</li>
+			<li class="rolling-banner">
+				<img alt="" src="${pageContext.request.contextPath}/resources/image/banner5.jfif">
+			</li>		
 		</ul>
 	</div>
 </div>
@@ -58,6 +67,8 @@
 	</h2>
 </c:if>
 
+<script type="text/javascript">
 
+</script>
 </body>
 </html>
