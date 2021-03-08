@@ -13,7 +13,6 @@
 	      <tr>
 	        <th>번호</th>
 	        <th>제목</th>
-	        <th>내용</th>
 	        <th>작성자</th>
 	        <th>작성일</th>
 	        <th>조회수</th>
@@ -24,7 +23,6 @@
 	      <tr>
 	        <td>${board.bNum}</td>
 	        <td><a href="${pageContext.request.contextPath}/detail?bNum=${board.bNum}&search=${pm.criteria.search}&type=${pm.criteria.type}">${board.title}</a></td>      
-	        <td>${board.content}</td>
 	        <td>${board.writer}</td>
 	        <td>${board.registerDate}</td>
 	        <td>${board.views}</td>

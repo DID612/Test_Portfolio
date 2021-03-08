@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.green.testportfolio.pagination.Criteria;
+import kr.green.testportfolio.pagination.PageMaker;
+import kr.green.testportfolio.service.BoardService;
 import kr.green.testportfolio.service.UserService;
+import kr.green.testportfolio.vo.BoardVo;
 import kr.green.testportfolio.vo.UserVo;
 
 /**
@@ -31,7 +35,10 @@ import kr.green.testportfolio.vo.UserVo;
 @Controller
 public class HomeController {
 	@Autowired
-		UserService userservice;
+	UserService userservice;
+	
+	@Autowired
+	BoardService boardservice;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -42,11 +49,13 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, Locale locale, HttpServletRequest req) {
+	public String home(Model model, Locale locale, Criteria cri) {
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
+		ArrayList<BoardVo> list = boardservice.getBoard(cri);
+		model.addAttribute("list", list);
 		return "/main/home";
 	}
 

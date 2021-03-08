@@ -35,9 +35,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String getDetail(Model model,int bNum) {
+	public String getDetail(Model model,int bNum, Criteria cri) {
 		BoardVo board = boardservice.getDetail(bNum);
 		model.addAttribute("board", board);
+		model.addAttribute("cri", cri);
 		return "/board/detail";
 	}
 	

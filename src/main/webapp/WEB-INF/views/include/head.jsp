@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,6 +38,10 @@
 		     <a class="nav-link" href="${pageContext.request.contextPath}/list">게시판</a>
 		   </li>
 		</ul>
+		<c:if test="${user.id!= null}">
+			${user.id}님 환영합니다.
+		</c:if>
+
 	</nav>
 </body>
 </html>
