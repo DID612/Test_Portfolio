@@ -31,13 +31,46 @@
   	$('#summernote').summernote({
       placeholder: 'Hello Bootstrap 4',
       tabsize: 2,
-      height: 300
+      height: 300,
+      minHeight : null,
+      maxHeight : null,
+      focus : true,
+      lang : 'ko-KR',
+      //콜백 함수
+      callbacks : { 
+      	onImageUpload : function(files, editor, welEditable) {
+      // 파일 업로드(다중업로드를 위해 반복문 사용)
+      for (var i = files.length - 1; i >= 0; i--) {
+      uploadSummernoteImageFile(files[i],
+      this);
+      		}
+      	}
+      }
     });
     
     $('form').submit(function(){
   	  var code = $('#summernote').summernote('code');
   	  $('textarea[name=content]').val(code);
     })
+    
+    function sendFile(file, el) {
+		var form_data = new FormData();
+      	form_data.append('file', file);
+      	$.ajax({
+        	data: form_data,
+        	type: "POST",
+        	url: '/uploadSummernoteImageFile',
+        	cache: false,
+        	contentType: false,
+        	enctype: 'multipart/form-data',
+        	processData: false,
+        	success: function(img_name) {
+          		$(el).summernote('editor.insertImage', img_name);
+        	}
+      	});
+    }
+    
+
   </script>
 </body>
 </html>
