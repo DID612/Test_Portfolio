@@ -7,6 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form action='<c:url value='${pageContext.request.contextPath}/goodsInsert'/>' method="post" enctype="multipart/form-data">
+	    <!-- 생략 -->
+	    <div class="form-group" id="file-list">
+	        <a href="#this" onclick="addFile()">파일추가</a>
+	        <div class="file-group">
+	            <input type="file" name="file"><a href='#this' name='file-delete'>삭제</a>
+	        </div>
+	    </div>
+    <button type="submit" class="btn btn-default">작성하기</button>
+
+  </form>
+
   <form action="${pageContext.request.contextPath}/register" method="post">
     <div class="form-group">
       <label for="usr">제목:</label>
@@ -27,6 +39,7 @@
 	<br>
 	<button type="submit" class="btn btn-primary">등록</button>  	
   </form>
+  
   <script type="text/javascript">
   	$('#summernote').summernote({
       placeholder: 'Hello Bootstrap 4',
@@ -35,42 +48,29 @@
       minHeight : null,
       maxHeight : null,
       focus : true,
-      lang : 'ko-KR',
-      //콜백 함수
-      callbacks : { 
-      	onImageUpload : function(files, editor, welEditable) {
-      // 파일 업로드(다중업로드를 위해 반복문 사용)
-      for (var i = files.length - 1; i >= 0; i--) {
-      uploadSummernoteImageFile(files[i],
-      this);
-      		}
-      	}
-      }
+      lang : 'ko-KR'
     });
     
-    $('form').submit(function(){
-  	  var code = $('#summernote').summernote('code');
-  	  $('textarea[name=content]').val(code);
+    $(document).ready(function() {
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
     })
-    
-    function sendFile(file, el) {
-		var form_data = new FormData();
-      	form_data.append('file', file);
-      	$.ajax({
-        	data: form_data,
-        	type: "POST",
-        	url: '/uploadSummernoteImageFile',
-        	cache: false,
-        	contentType: false,
-        	enctype: 'multipart/form-data',
-        	processData: false,
-        	success: function(img_name) {
-          		$(el).summernote('editor.insertImage', img_name);
-        	}
-      	});
+ 
+    function addFile() {
+        var str = "<div class='file-group'><input type='file' name='file'><a href='#this' name='file-delete'>삭제</a></div>";
+        $("#file-list").append(str);
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
     }
-    
-
+ 
+    function deleteFile(obj) {
+        obj.parent().remove();
+    }
+  	
   </script>
 </body>
 </html>

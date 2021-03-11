@@ -1,0 +1,43 @@
+https://tech.kakao.com/2017/09/27/kakao-blind-recruitment-round-1/
+카카오 코딩 테스트 해설
+
+https://sueaty.tistory.com/40
+코딩테스트 공부
+
+https://programmers.co.kr/skill_checks
+프로그래머스 수준체크
+
+https://www.inflearn.com/courses?s=%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8&order=search&page=1
+코딩테스트 강의
+
+https://blog.encrypted.gg/951
+코딩테스트 해설
+
+https://edu.goorm.io/learn/lecture/970/%EC%8B%A4%EC%A0%84-%EC%9C%A0%ED%98%95-%EC%BD%94%EB%94%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%AA%A8%EC%9D%98%EA%B3%A0%EC%82%AC-%EC%8B%9C%EC%A6%8C1/lesson/37340/%EB%B3%B8-%EA%B3%BC%EB%AA%A9-%EC%86%8C%EA%B0%9C
+코딩테스트 모의고사
+
+람다 그누보드 파라미터박싱언박싱  벤더 서버와 벤더 OS
+
+https://sincerity.tistory.com/2
+sqld 요약 1 좀 별로
+
+https://devmg.tistory.com/95
+sqld 요약 2
+
+https://bangu4.tistory.com/77
+sqld 요약 3
+
+https://togll.tistory.com/43
+리눅스마스터 2급 족보
+
+https://stricky.tistory.com/273
+sqld 기출문제
+
+https://swexpertacademy.com/main/learn/course/subjectList.do?courseId=AVuPDN86AAXw5UW6
+sw익스퍼트아카데미
+
+https://programmers.co.kr/competitions/977/2021-web-be-first?utm_source=google&utm_medium=banner&utm_campaign=competition977_remarketing_be&utm_content=977_rsp&gclid=Cj0KCQiA-aGCBhCwARIsAHDl5x81l41N36dgL8kRs40cX3xGw4Dfcs3Dps_2sJolSRL6eNPxF_f-cOAaAue9EALw_wcB
+프로그래머스 데브 매칭 코테 
+
+http://codeforces.com/
+코드포스 코테 전세계 레이팅

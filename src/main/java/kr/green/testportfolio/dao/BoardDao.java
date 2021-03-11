@@ -2,6 +2,7 @@ package kr.green.testportfolio.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -21,6 +22,10 @@ public interface BoardDao {
 	ArrayList<BoardVo> getBoard(@Param("cri")Criteria cri);
 
 	int getTotalCount(@Param("cri")Criteria cri);
+
+	void registerImg(BoardVo board);
+
+	void insertFile(Map<String, Object> map);
 
 }
 		

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
 
@@ -32,6 +35,8 @@ import kr.green.testportfolio.vo.UserVo;
 @Controller
 public class BoardController {
 
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(BoardController.class);
+		
 	@Autowired
 	BoardService boardservice;
 	
@@ -78,8 +83,10 @@ public class BoardController {
 		return "/board/register";
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegisterBoard(Model model, BoardVo board) {
+	@RequestMapping(value = "/register/img", method = RequestMethod.POST)
+	public String postRegisterBoard(Model model, BoardVo board, MultipartHttpServletRequest mpRequest) {
+		logger.info("write");
+		boardservice.registerImg(board, mpRequest);
 		boardservice.insertBoard(board);
 		return "redirect:/list";
 	}

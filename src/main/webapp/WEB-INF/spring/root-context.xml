@@ -44,4 +44,7 @@
 	    </property>
 	</bean>
 	
+	<!-- scan -->
+	<context:component-scan base-package="kr.co.util"></context:component-scan>
+	
 </beans>

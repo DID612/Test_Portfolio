@@ -1,9 +1,13 @@
 package kr.green.testportfolio.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.apache.commons.io.FileUtils;
 
 import kr.green.testportfolio.dao.BoardDao;
 import kr.green.testportfolio.pagination.Criteria;
@@ -12,6 +16,8 @@ import kr.green.testportfolio.vo.BoardVo;
 @Service
 public class BoardServiceImp implements BoardService {
 
+	private FileUtils fileUtils;
+	
 	@Autowired
 	BoardDao boardDao;
 
@@ -44,6 +50,17 @@ public class BoardServiceImp implements BoardService {
 	@Override
 	public int getTotalCount(Criteria cri) {
 		return boardDao.getTotalCount(cri);
+	}
+
+	@Override
+	public void registerImg(BoardVo board, MultipartHttpServletRequest mpRequest) {
+		boardDao.registerImg(board);
+		
+		List<Map<String,Object>> list = parseInsertFileInfo(board, mpRequest); 
+		int size = list.size();
+		for(int i=0; i<size; i++){ 
+			boardDao.insertFile(list.get(i)); 
+		}
 	}
 	
 }
