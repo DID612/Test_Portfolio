@@ -64,4 +64,9 @@
   		where bNum = #{bNum}
   </update>
   
+  <insert id="insertGoods">
+  	insert into goods(gNum, org_file_name, filename)
+  		values(#{num},#{oriFilename},#{filename})
+  </insert>
+  
 </mapper>

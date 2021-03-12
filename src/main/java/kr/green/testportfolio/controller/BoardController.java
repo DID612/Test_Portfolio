@@ -1,6 +1,8 @@
 package kr.green.testportfolio.controller;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,10 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.green.spring.utils.UploadFileUtils;
 import kr.green.testportfolio.pagination.Criteria;
 import kr.green.testportfolio.pagination.PageMaker;
 import kr.green.testportfolio.service.BoardService;
@@ -20,7 +25,8 @@ import kr.green.testportfolio.vo.UserVo;
 
 @Controller
 public class BoardController {
-
+	private String uploadPath="D:\\kmy\\upfile";
+	
 	@Autowired
 	BoardService boardservice;
 	
@@ -68,7 +74,24 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String postRegisterBoard(Model model, BoardVo board) {
+	public String postRegisterBoard(Model model, BoardVo board, MultipartFile[] fileList) throws Exception {
+		if(fileList != null) {
+			for(MultipartFile file : fileList) {
+				if(file != null &&file.getOriginalFilename().length() != 0) {
+					String fileName = kr.green.testportfolio.utils.UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+					boardservice.insertGoods(board.getbNum(),file.getOriginalFilename(),fileName);
+				}
+			}
+		}
+		
+		boardservice.insertBoard(board);
+		
+		return "redirect:/list";
+	}
+	
+	@RequestMapping(value = "/register/img", method = RequestMethod.POST)
+	public String postRegisterBoardImg(Model model, BoardVo board, MultipartFile file) throws Exception {
+		uploadFile(file.getOriginalFilename(),file.getBytes());
 		boardservice.insertBoard(board);
 		return "redirect:/list";
 	}
@@ -78,6 +101,17 @@ public class BoardController {
 		boardservice.deleteBoard(bNum);
 //		return "board/list";
 		return "redirect:/list";
+	}
+	
+	/* 서버에 저장 */
+	private String uploadFile(String name, byte[] data)
+		throws Exception{
+	    /* 고유한 파일명을 위해 UUID를 이용 */
+		UUID uid = UUID.randomUUID();
+		String savaName = uid.toString() + "_" + name;
+		File target = new File(uploadPath, savaName);
+		FileCopyUtils.copy(data, target);
+		return savaName;
 	}
 	
 }

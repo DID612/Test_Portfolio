@@ -18,5 +18,7 @@ public interface BoardService {
 	ArrayList<BoardVo> getBoard(Criteria cri);
 
 	int getTotalCount(Criteria cri);
+
+	void insertGoods(int getbNum, String originalFilename, String fileName);
 	
 }

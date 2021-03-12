@@ -22,5 +22,7 @@ public interface BoardDao {
 
 	int getTotalCount(@Param("cri")Criteria cri);
 
+	void insertGoods(int num, String originalFilename, String fileName);
+
 }
 		

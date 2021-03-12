@@ -45,5 +45,10 @@ public class BoardServiceImp implements BoardService {
 	public int getTotalCount(Criteria cri) {
 		return boardDao.getTotalCount(cri);
 	}
+
+	@Override
+	public void insertGoods(int num, String originalFilename, String fileName) {
+		boardDao.insertGoods(num, originalFilename,fileName);
+	}
 	
 }

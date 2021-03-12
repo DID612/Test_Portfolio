@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<div class="form-group">
+	        <label>파일</label>
+	        <input type="file" class="form-control" name="fileList"/>
+	    </div>
+	    <div class="form-group">
+	        <label>파일</label>
+	        <input type="file" class="form-control" name="fileList"/>
+	    </div>
+	    <div class="form-group">
+	        <label>파일</label>
+	        <input type="file" class="form-control" name="fileList"/>
+	    </div>
+
   <form action="${pageContext.request.contextPath}/register" method="post">
     <div class="form-group">
       <label for="usr">제목:</label>
